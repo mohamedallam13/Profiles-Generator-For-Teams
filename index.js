@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const Card = require("./lib/Card.js");
 
-const EMPLOYEE_CARDS = {
+const EMPLOYEE_CLASSES = {
     Manager: require("./lib/Manager.js"),
     Engineer: require("./lib/Engineer.js"),
     Intern: require("./lib/Intern.js"),
@@ -49,8 +49,8 @@ const QUESTIONS = [
     },
     {
         type: "input",
-        name: "officeNumber",
-        message: "What is their officeNumber?",
+        name: "officeNumner",
+        message: "What is their office Number?",
         when: (answers) => answers.role == "Manager"
     }
 ]
@@ -62,8 +62,10 @@ inquirer
     .prompt(QUESTIONS)
     .then((responses) => {
         const { name, email, role, github, school, officeNumber } = responses
-        var EmployeeClass = new EMPLOYEE_CARDS[role](name, email,{ github, school, officeNumber});
-        console.log(EmployeeClass)
-        var htmlCard = new Card(responses);
+        var employeeObj = new EMPLOYEE_CLASSES[role](name, email,{ github, school, officeNumber});
+        console.log(employeeObj)
+        var htmlCardObj = new Card(employeeObj);
+        var htmlCard = htmlCardObj.render()
+        console.log(htmlCard);
         //writeHTMLFile(htmlCard);
     });
