@@ -77,7 +77,9 @@ function writeHTMLFile(htmlCard) {
             return console.log(err);
         }
 
-        var result = data.replace("<!--APPEND HERE-->", htmlCard);
+        var result = data
+        .replace('<h1 style="color: grey; text-align: center; font-size: 80px;">NO MEMBERS YET</h1>', "")
+        .replace("<!--APPEND HERE-->", htmlCard);
 
         fs.writeFile('./dist/index.html', result, 'utf8', function (err) {
             if (err) return console.log(err);
