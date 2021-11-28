@@ -71,7 +71,7 @@ Testing screenshot.
 
 This is what the user sees when no cards are there yet.
 
-![no cards](./screenshots/screenshot1.jpg)
+![no cards](./screenshots/screenshot1.JPG)
 
 ## Questions 
 
