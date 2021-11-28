@@ -1,0 +1,28 @@
+{
+  "name": "homework-09",
+  "version": "1.0.0",
+  "description": "A tool that generates an HTML File from CL input containing employees profiles",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamedallam13/Profiles-Generator-For-Teams.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohamedallam13/Profiles-Generator-For-Teams/issues"
+  },
+  "homepage": "https://github.com/mohamedallam13/Profiles-Generator-For-Teams#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "uuid": "^8.3.2"
+  }
+}

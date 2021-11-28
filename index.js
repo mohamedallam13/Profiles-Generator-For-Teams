@@ -1,6 +1,15 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const Card = require("./lib/Card.js");
+
+const EMPLOYEE_CARDS = {
+    Manager: require("./lib/Manager.js"),
+    Engineer: require("./lib/Engineer.js"),
+    Intern: require("./lib/Intern.js"),
+}
+
+
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 // Questions list
@@ -21,41 +30,28 @@ const QUESTIONS = [
         }
     },
     {
-        type: "input",
-        name: "title",
-        message: "What is the title of the Readme?"
-    },
-    {
         type: "list",
-        name: "license",
-        message: "Please choose a license:",
-        choices: CHOICES
+        name: "role",
+        message: "Please select their role:",
+        choices: ["Manager", "Engineer", "Intern"]
     },
     {
         type: "input",
-        name: "description",
-        message: "Enter the Readme description:"
+        name: "github",
+        message: "What is their github?",
+        when: (answers) => answers.role == "Engineer"
     },
     {
         type: "input",
-        name: "usage_information",
-        message: "Please provide usage information"
+        name: "school",
+        message: "What is their school?",
+        when: (answers) => answers.role == "Intern"
     },
     {
         type: "input",
-        name: "installation",
-        message: "Please provide installation steps, comma separated:"
-    },
-    {
-        type: "input",
-        name: "contributing",
-        message: "Please provide contibution instructions (If left blank, a default response will be provided):",
-        default: "Please follow [Contributor Covenant](https://www.contributor-covenant.org/), which is the is an industry standard."
-    },
-    {
-        type: "input",
-        name: "testing",
-        message: "Please provide testing methods:",
+        name: "officeNumber",
+        message: "What is their officeNumber?",
+        when: (answers) => answers.role == "Manager"
     }
 ]
 
@@ -65,6 +61,9 @@ const QUESTIONS = [
 inquirer
     .prompt(QUESTIONS)
     .then((responses) => {
-        var htmlCard = new CardObj(responses);
+        const { name, email, role, github, school, officeNumber } = responses
+        var EmployeeClass = new EMPLOYEE_CARDS[role](name, email, github, school, officeNumber);
+        console.log(EmployeeClass)
+        var htmlCard = new Card(responses);
         //writeHTMLFile(htmlCard);
     });
