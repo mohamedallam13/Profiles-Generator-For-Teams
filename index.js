@@ -62,10 +62,25 @@ inquirer
     .prompt(QUESTIONS)
     .then((responses) => {
         const { name, email, role, github, school, officeNumber } = responses
-        var employeeObj = new EMPLOYEE_CLASSES[role](name, email,{ github, school, officeNumber});
+        var employeeObj = new EMPLOYEE_CLASSES[role](name, email, { github, school, officeNumber });
         console.log(employeeObj)
         var htmlCardObj = new Card(employeeObj);
         var htmlCard = htmlCardObj.render()
         console.log(htmlCard);
-        //writeHTMLFile(htmlCard);
+        writeHTMLFile(htmlCard);
     });
+
+
+function writeHTMLFile(htmlCard) {
+    fs.readFile('./dist/index.html', 'utf8', function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        var result = data.replace("<!--APPEND HERE-->", htmlCard);
+
+        fs.writeFile('./dist/index.html', result, 'utf8', function (err) {
+            if (err) return console.log(err);
+        });
+    });
+}
