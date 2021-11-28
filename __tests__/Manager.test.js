@@ -59,7 +59,7 @@ describe('Manager Class', () => {
     });
 
     // School test
-    it("should return the school name", () => {
+    it("should return the office number", () => {
 
         // Act
         const returnedOfficeNumber = managerObj.getOfficeNumber();
@@ -69,7 +69,7 @@ describe('Manager Class', () => {
     });
 
     // School HTML string test
-    it("should return school name", () => {
+    it("should return the office number", () => {
 
         // Act
         const returnedOfficeNumber = managerObj.getExtraInfo();

@@ -49,8 +49,8 @@ const QUESTIONS = [
     },
     {
         type: "input",
-        name: "officeNumner",
-        message: "What is their office Number?",
+        name: "officeNumber",
+        message: "What is their Office Number?",
         when: (answers) => answers.role == "Manager"
     }
 ]
@@ -63,10 +63,8 @@ inquirer
     .then((responses) => {
         const { name, email, role, github, school, officeNumber } = responses
         var employeeObj = new EMPLOYEE_CLASSES[role](name, email, { github, school, officeNumber });
-        console.log(employeeObj)
         var htmlCardObj = new Card(employeeObj);
         var htmlCard = htmlCardObj.render()
-        console.log(htmlCard);
         writeHTMLFile(htmlCard);
     });
 
