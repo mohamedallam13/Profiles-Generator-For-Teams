@@ -62,7 +62,7 @@ inquirer
     .prompt(QUESTIONS)
     .then((responses) => {
         const { name, email, role, github, school, officeNumber } = responses
-        var EmployeeClass = new EMPLOYEE_CARDS[role](name, email, github, school, officeNumber);
+        var EmployeeClass = new EMPLOYEE_CARDS[role](name, email,{ github, school, officeNumber});
         console.log(EmployeeClass)
         var htmlCard = new Card(responses);
         //writeHTMLFile(htmlCard);
