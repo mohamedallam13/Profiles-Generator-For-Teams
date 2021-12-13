@@ -38,6 +38,7 @@ npm i
 ## Features
 
 * Easy to use, step by step inquirer to get all necessary information from the user
+* Offers a main menu, to add new employees, clear current or quit
 * The use of general classes that extends to specific classes and the reliance on OOP
 * Sleek and ploished front end that is responsive and user friendly
 
