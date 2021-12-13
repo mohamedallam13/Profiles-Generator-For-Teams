@@ -21,7 +21,7 @@ const MAIN_MENU_QUESTIONS = [
         type: "list",
         name: "main_menu_request",
         message: "What would you like to do?",
-        choices: ["Add a new employee", "Dummy", "Quit"]
+        choices: ["Add a new employee", "Clear Currents", "Quit"]
     },
     {
         type: "confirm",
@@ -96,10 +96,14 @@ const main = async function () {
     if (confirm_quit) {
         return;
     }
-    if (main_menu_request == "Dummy") {
-        console.log("This is a dummy choice to make the list into 3 entries to overcome a bug in node in windows")
-    } else {
-        addEmployee();
+    switch (main_menu_request) {
+        case 'Add a new employee':
+            addEmployee();
+            break;
+        case 'Clear Currents':
+            clearAll();
+            break;
+        default:
     }
 }
 
@@ -119,6 +123,19 @@ function writeHTMLFile(htmlCard) {
             if (err) return console.log(err);
         });
     });
+}
+
+function clearAll() {
+    fs.readFile('./src/empty.html', 'utf8', function (err, data) {
+        if (err) {
+            return console.log(err);
+        }
+
+        fs.writeFile('./dist/index.html', data, 'utf8', function (err) {
+            if (err) return console.log(err);
+        });
+    });
+    main();
 }
 
 main();
